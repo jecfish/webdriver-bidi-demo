@@ -1,0 +1,25 @@
+{
+  "name": "webdriver-bidi-demo",
+  "version": "0.0.1",
+  "description": "WebDriver BiDi Demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sel": "node bidi-selenium.mjs",
+    "pptr": "node bidi-pptr.mjs",
+    "wdio": "node bidi-wdio.mjs"
+  },
+  "author": "Jecelyn Yeen",
+  "license": "MIT",
+  "dependencies": {
+    "@wdio/cli": "^8.6.5",
+    "@wdio/local-runner": "^8.6.3",
+    "@wdio/mocha-framework": "^8.6.1",
+    "chromedriver": "^111.0.0",
+    "puppeteer": "^19.7.5",
+    "selenium-webdriver": "^4.8.1",
+    "wdio-chromedriver-service": "^8.1.1",
+    "wdio-geckodriver-service": "^4.1.0",
+    "webdriverio": "^8.6.3"
+  }
+}
