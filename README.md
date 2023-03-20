@@ -1,9 +1,10 @@
 # WebDriver BiDi Demo
 
-- Puppeteer: `npm run pptr`
-- SeleniumJS: `npm run sel`
+- Puppeteer (Chrome): `npm run pptr`
+- SeleniumJS (Chrome): `npm run sel`
+- SeleniumJS (Firefox): `npm run sel-fire`
 - WebdriverIO (Chrome): `npm run wdio`
-- WebdriverIO (Firefox): `npm run wdio-firefox`
+- WebdriverIO (Firefox): `npm run wdio-fire`
 
 ## Others
 

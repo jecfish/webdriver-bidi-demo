@@ -1,11 +1,11 @@
 import * as assert from "node:assert";
 import { Builder, By, LogInspector } from "selenium-webdriver";
-import chrome from "selenium-webdriver/chrome.js";
+import firefox from "selenium-webdriver/firefox.js";
 
 // Launch WebDriver BiDi
 const driver = new Builder()
-  .forBrowser('chrome')
-  .setChromeOptions(new chrome.Options().enableBidi())
+  .forBrowser('firefox')
+  .setFirefoxOptions(new firefox.Options().enableBidi())
   .build();
 
 // Monitor console messages
