@@ -3,6 +3,7 @@ import chromedriver from "chromedriver";
 import { remote } from "webdriverio";
 
 // Launch Chrome
+// kill port if it is used: lsof -ti tcp:4441 | xargs kill
 const port = 4444;
 const args = [`--port=${port}`];
 await chromedriver.start(args, true);
