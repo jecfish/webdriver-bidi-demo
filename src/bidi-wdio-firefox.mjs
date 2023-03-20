@@ -11,8 +11,7 @@ const firefox = geckodriver.start(args);
 // Launch WebDriver BiDi
 const browser = await remote({
     port,
-    capabilities: { browserName: 'firefox', webSocketUrl: true },
-    services: [['geckodriver']],
+    capabilities: { browserName: 'firefox', webSocketUrl: true }
 });
 
 // Monitor console messages
