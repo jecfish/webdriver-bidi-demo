@@ -6,12 +6,14 @@
   "scripts": {
     "sel": "node bidi-selenium.mjs",
     "pptr": "node bidi-pptr.mjs",
-    "wdio": "node bidi-wdio.mjs"
+    "wdio": "node bidi-wdio.mjs",
+    "wdio-firefox": "node bidi-wdio-firefox.mjs"
   },
   "author": "Jecelyn Yeen",
   "license": "MIT",
   "dependencies": {
     "chromedriver": "^111.0.0",
+    "geckodriver": "^3.2.0",
     "puppeteer": "^19.7.5",
     "selenium-webdriver": "^4.8.1",
     "webdriverio": "^8.6.3"

@@ -1,14 +1,18 @@
 import * as assert from "node:assert";
-import chromedriver from "chromedriver";
+import geckodriver from "geckodriver";
 import { remote } from "webdriverio";
 
-// Launch Chrome
-const args = ['--port=4444'];
-await chromedriver.start(args, true);
+// Launch Firefox
+// kill port if it is used: lsof -ti tcp:4441 | xargs kill
+const port = 4441;
+const args = [`--port=${port}`];
+const firefox = geckodriver.start(args);
 
 // Launch WebDriver BiDi
 const browser = await remote({
-    capabilities: { browserName: 'chrome', webSocketUrl: true, }
+    port,
+    capabilities: { browserName: 'firefox', webSocketUrl: true },
+    services: [['geckodriver']],
 });
 
 // Monitor console messages
@@ -33,5 +37,5 @@ const checkout = await browser.$('[data-test="checkout"]');
 assert.strictEqual(await checkout.getText(), 'Total: $10.00');
 
 await browser.closeWindow();
-chromedriver.stop();
-    
+
+firefox.kill();
