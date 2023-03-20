@@ -4,7 +4,7 @@ import { remote } from "webdriverio";
 
 // Launch Firefox
 // kill port if it is used: lsof -ti tcp:4441 | xargs kill
-const port = 4441;
+const port = 4444;
 const args = [`--port=${port}`];
 const firefox = geckodriver.start(args);
 
@@ -34,6 +34,10 @@ await browser.$('[data-test="Espresso"]').click();
 // Assert
 const checkout = await browser.$('[data-test="checkout"]');
 assert.strictEqual(await checkout.getText(), 'Total: $10.00');
+
+// For debug purpose
+// console.log(browser.sessionId);
+// await browser.debug();
 
 await browser.closeWindow();
 

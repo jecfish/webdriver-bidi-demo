@@ -3,12 +3,14 @@ import chromedriver from "chromedriver";
 import { remote } from "webdriverio";
 
 // Launch Chrome
-const args = ['--port=4444'];
+const port = 4444;
+const args = [`--port=${port}`];
 await chromedriver.start(args, true);
 
 // Launch WebDriver BiDi
 const browser = await remote({
-    capabilities: { browserName: 'chrome', webSocketUrl: true, }
+  port,
+  capabilities: { browserName: 'chrome', webSocketUrl: true, }
 });
 
 // Monitor console messages
@@ -31,6 +33,10 @@ await browser.$('[data-test="Espresso"]').click();
 // Assert
 const checkout = await browser.$('[data-test="checkout"]');
 assert.strictEqual(await checkout.getText(), 'Total: $10.00');
+
+// For debug purpose
+// console.log(browser.sessionId);
+// await browser.debug();
 
 await browser.closeWindow();
 chromedriver.stop();
