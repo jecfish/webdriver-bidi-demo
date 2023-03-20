@@ -2,4 +2,5 @@
 
 - Puppeteer: `npm run pptr`
 - SeleniumJS: `npm run sel`
-- WebdriverIO: `npm run wdio`
+- WebdriverIO (Chrome): `npm run wdio`
+- WebdriverIO (Firefox): `npm run wdio-firefox`
