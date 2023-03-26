@@ -24,7 +24,7 @@ browser.on('message', (data) => {
   const {params} = JSON.parse(data);
   if (params?.level != 'error') return;
   console.log('RECEIVED: %s', params?.text);
-  // assert.fail('Console should be clear.');
+  // assert.fail(`Unexpectedconsole message received: ${(JSON.parse(data)).params.text}`);
 });
 
 // Action
