@@ -16,7 +16,7 @@
   "dependencies": {
     "chromedriver": "^111.0.0",
     "geckodriver": "^3.2.0",
-    "puppeteer": "^19.7.5",
+    "puppeteer": "^19.8.0",
     "selenium-webdriver": "^4.8.1",
     "webdriverio": "^8.6.3"
   }
