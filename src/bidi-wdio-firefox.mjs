@@ -3,7 +3,7 @@ import geckodriver from "geckodriver";
 import { remote } from "webdriverio";
 
 // Launch Firefox
-// kill port if it is used: lsof -ti tcp:4441 | xargs kill
+// kill port if it is used: lsof -ti tcp:4444 | xargs kill
 const port = 4444;
 const args = [`--port=${port}`];
 const firefox = geckodriver.start(args);
