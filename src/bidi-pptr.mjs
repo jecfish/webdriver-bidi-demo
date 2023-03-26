@@ -13,6 +13,7 @@ const page = await context.newPage();
 page.on('console', message => {
   if (message.type() != 'error') return;
   console.log('RECEIVED: %s', message.text());
+  // assert.fail('Console should be clear.');
 });
 
 // Action

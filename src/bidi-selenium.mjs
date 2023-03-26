@@ -14,6 +14,7 @@ const inspector = await LogInspector(driver);
 await inspector.onConsoleEntry(async (logEntry) => {
   if (logEntry._level != 'error') return;
   console.log('RECEIVED: ', logEntry._text);
+  // assert.fail('Console should be clear.');
 });
 
 // Action
