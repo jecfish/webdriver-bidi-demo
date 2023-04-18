@@ -1,8 +1,6 @@
 {
-  "name": "webdriver-bidi-demo",
-  "version": "0.0.1",
+  "private": true,
   "description": "WebDriver BiDi Demo",
-  "main": "index.js",
   "scripts": {
     "sel": "node src/bidi-selenium.mjs",
     "sel-fire": "node src/bidi-selenium-firefox.mjs",

@@ -1,6 +1,6 @@
-import * as assert from "node:assert";
-import geckodriver from "geckodriver";
-import { remote } from "webdriverio";
+import * as assert from 'node:assert';
+import geckodriver from 'geckodriver';
+import { remote } from 'webdriverio';
 
 // Launch Firefox
 // kill port if it is used: lsof -ti tcp:4444 | xargs kill
@@ -10,20 +10,23 @@ const firefox = geckodriver.start(args);
 
 // Launch WebDriver BiDi
 const browser = await remote({
-    port,
-    capabilities: { browserName: 'firefox', webSocketUrl: true }
+  port,
+  capabilities: {
+    browserName: 'firefox',
+    webSocketUrl: true,
+  },
 });
 
 // Monitor console messages
 await browser.send({
   method: 'session.subscribe',
-  params: { events: ['log.entryAdded'] }
+  params: { events: ['log.entryAdded'] },
 });
-  
+
 browser.on('message', (data) => {
   const {params} = JSON.parse(data);
-  if (params?.level != 'error') return;
-  console.log('RECEIVED: %s', params?.text);
+  if (params?.level !== 'error') return;
+  console.log('RECEIVED:', params?.text);
   // assert.fail(`Unexpected console message received: ${JSON.parse(data).params.text}`);
 });
 
@@ -41,5 +44,4 @@ assert.strictEqual(await checkout.getText(), 'Total: $10.00');
 // await browser.debug();
 
 await browser.closeWindow();
-
 firefox.kill();
