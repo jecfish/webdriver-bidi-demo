@@ -1,9 +1,9 @@
-import * as assert from "node:assert";
-import puppeteer from "puppeteer";
+import * as assert from 'node:assert';
+import puppeteer from 'puppeteer';
 
 // Launch CDP headless
 const browser = await puppeteer.launch({
-  headless: 'new'
+  headless: 'new',
 });
 
 const context = await browser.createIncognitoBrowserContext();
@@ -11,8 +11,8 @@ const page = await context.newPage();
 
 // Monitor console messages
 page.on('console', async (message) => {
-  if (message.type() != 'error') return;
-  console.log('RECEIVED: %s', message.text());
+  if (message.type() !== 'error') return;
+  console.log('RECEIVED:', message.text());
   // assert.fail(`Unexpected console message received: ${message.text()}`);
 });
 
@@ -27,4 +27,4 @@ await coffee.click();
 const checkout = await page.$('[data-test="checkout"]');
 assert.strictEqual(await checkout.evaluate(x => x.textContent), 'Total: $10.00');
 
-browser.close();
+await browser.close();

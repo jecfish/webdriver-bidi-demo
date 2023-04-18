@@ -1,6 +1,6 @@
-import * as assert from "node:assert";
-import chromedriver from "chromedriver";
-import { remote } from "webdriverio";
+import * as assert from 'node:assert';
+import chromedriver from 'chromedriver';
+import { remote } from 'webdriverio';
 
 // Launch Chrome
 // kill port if it is used: lsof -ti tcp:4441 | xargs kill
@@ -11,19 +11,22 @@ await chromedriver.start(args, true);
 // Launch WebDriver BiDi
 const browser = await remote({
   port,
-  capabilities: { browserName: 'chrome', webSocketUrl: true, }
+  capabilities: {
+    browserName: 'chrome',
+    webSocketUrl: true,
+  },
 });
 
 // Monitor console messages
 await browser.send({
   method: 'session.subscribe',
-  params: { events: ['log.entryAdded'] }
+  params: { events: ['log.entryAdded'] },
 });
-  
+
 browser.on('message', (data) => {
   const {params} = JSON.parse(data);
-  if (params?.level != 'error') return;
-  console.log('RECEIVED: %s', params?.text);
+  if (params?.level !== 'error') return;
+  console.log('RECEIVED:', params?.text);
   // assert.fail(`Unexpected console message received: ${JSON.parse(data).params.text}`);
 });
 
@@ -42,4 +45,3 @@ assert.strictEqual(await checkout.getText(), 'Total: $10.00');
 
 await browser.closeWindow();
 chromedriver.stop();
-    

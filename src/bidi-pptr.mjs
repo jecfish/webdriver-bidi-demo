@@ -1,9 +1,9 @@
-import * as assert from "node:assert";
-import puppeteer from "puppeteer";
+import * as assert from 'node:assert';
+import puppeteer from 'puppeteer';
 
 // Launch WebDriver BiDi
 const browser = await puppeteer.launch({
-  protocol: 'webDriverBiDi'
+  protocol: 'webDriverBiDi',
 });
 
 const context = await browser.createIncognitoBrowserContext();
@@ -11,8 +11,8 @@ const page = await context.newPage();
 
 // Monitor console messages
 page.on('console', message => {
-  if (message.type() != 'error') return;
-  console.log('RECEIVED: %s', message.text());
+  if (message.type() !== 'error') return;
+  console.log('RECEIVED:', message.text());
   // assert.fail(`Unexpected console message received: ${message.text()}`);
 });
 
@@ -20,7 +20,7 @@ page.on('console', message => {
 await page.evaluate(() => {
   document.body.innerHTML = `
     <button data-test="Espresso" onclick="
-      document.querySelector('[data-test=checkout]').innerText = 'Total: $10.00';
+      document.querySelector('[data-test=checkout]').textContent = 'Total: $10.00';
       console.error('Some additional workflow is broken.');
     ">Espresso</button>
     <div data-test="checkout"></div>
@@ -32,7 +32,7 @@ await page.evaluate(() => {
 });
 
 // Assert
-const checkout = await page.evaluate(() => document.querySelector('[data-test="checkout"]').innerText);
+const checkout = await page.evaluate(() => document.querySelector('[data-test="checkout"]').textContent);
 assert.strictEqual(await checkout, 'Total: $10.00');
 
-browser.close();
+await browser.close();

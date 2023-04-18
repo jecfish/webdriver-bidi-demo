@@ -1,6 +1,6 @@
-import * as assert from "node:assert";
-import { Builder, By, LogInspector } from "selenium-webdriver";
-import firefox from "selenium-webdriver/firefox.js";
+import * as assert from 'node:assert';
+import { Builder, By, LogInspector } from 'selenium-webdriver';
+import firefox from 'selenium-webdriver/firefox.js';
 
 // Launch WebDriver BiDi
 const driver = new Builder()
@@ -12,8 +12,8 @@ const driver = new Builder()
 const inspector = await LogInspector(driver);
 
 await inspector.onConsoleEntry(async (logEntry) => {
-  if (logEntry._level != 'error') return;
-  console.log('RECEIVED: ', logEntry._text);
+  if (logEntry._level !== 'error') return;
+  console.log('RECEIVED:', logEntry._text);
   // assert.fail(`Unexpected console message received: ${logEntry._text}`);
 });
 
@@ -27,4 +27,4 @@ await coffee.click();
 const checkout = await driver.findElement(By.css('[data-test="checkout"]'));
 assert.strictEqual(await checkout.getText(), 'Total: $10.00');
 
-driver.quit();
+await driver.quit();
