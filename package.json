@@ -7,17 +7,19 @@
     "sel": "node src/bidi-selenium.mjs",
     "sel-fire": "node src/bidi-selenium-firefox.mjs",
     "pptr": "node src/bidi-pptr.mjs",
-    "pptr-cdp": "node src/pptr-cdp.mjs",
+    "pptr-firefox": "node src/bidi-pptr-firefox.mjs",
+    "pptr-cdp": "DEBUG=puppeteer:protocol:SEND* node src/pptr-cdp.mjs",
     "wdio": "node src/bidi-wdio.mjs",
     "wdio-fire": "node src/bidi-wdio-firefox.mjs"
   },
   "author": "Jecelyn Yeen",
   "license": "MIT",
   "dependencies": {
-    "chromedriver": "^111.0.0",
-    "geckodriver": "^3.2.0",
-    "puppeteer": "^19.8.0",
-    "selenium-webdriver": "^4.8.1",
-    "webdriverio": "^8.6.3"
+    "chromedriver": "^120.0.0",
+    "geckodriver": "^4.3.0",
+    "puppeteer": "^21.6.0",
+    "selenium-webdriver": "^4.16.0",
+    "wait-port": "^1.1.0",
+    "webdriverio": "^8.26.1"
   }
 }
