@@ -19,7 +19,7 @@ page.on('console', message => {
 });
 
 await page.setViewport({width: 600, height: 1041});
-await page.goto('https://coffee-cart.app/?breakable=1');
+await page.goto('https://coffee-cart.app/?breakable=1', { waitUntil: 'networkidle0' });
 
 const coffee = await page.$('[data-test="Espresso"]');
 await coffee.click();
