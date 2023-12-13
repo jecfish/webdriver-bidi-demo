@@ -7,7 +7,7 @@
     "sel": "node src/bidi-selenium.mjs",
     "sel-fire": "node src/bidi-selenium-firefox.mjs",
     "pptr": "node src/bidi-pptr.mjs",
-    "pptr-firefox": "node src/bidi-pptr-firefox.mjs",
+    "pptr-fire": "node src/bidi-pptr-firefox.mjs",
     "pptr-cdp": "DEBUG=puppeteer:protocol:SEND* node src/pptr-cdp.mjs",
     "wdio": "node src/bidi-wdio.mjs",
     "wdio-fire": "node src/bidi-wdio-firefox.mjs"

@@ -3,7 +3,9 @@ import puppeteer from "puppeteer";
 
 // Launch WebDriver BiDi
 const browser = await puppeteer.launch({
-  protocol: 'webDriverBiDi'
+  protocol: 'webDriverBiDi',
+  product: 'chrome',
+  headless: false
 });
 
 const context = await browser.createIncognitoBrowserContext();
@@ -16,23 +18,10 @@ page.on('console', message => {
   // assert.fail(`Unexpected console message received: ${message.text()}`);
 });
 
-// Action
-await page.evaluate(() => {
-  document.body.innerHTML = `
-    <button data-test="Espresso" onclick="
-      document.querySelector('[data-test=checkout]').innerText = 'Total: $10.00';
-      console.error('Some additional workflow is broken.');
-    ">Espresso</button>
-    <div data-test="checkout"></div>
-  `;
-});
+await page.setViewport({width: 600, height: 1041});
+await page.goto('https://coffee-cart.app/?breakable=1');
 
-await page.evaluate(() => {
-  document.querySelector('[data-test="Espresso"]').click();
-});
-
-// Assert
-const checkout = await page.evaluate(() => document.querySelector('[data-test="checkout"]').innerText);
-assert.strictEqual(await checkout, 'Total: $10.00');
+const coffee = await page.$('[data-test="Espresso"]');
+await coffee.click();
 
 browser.close();
