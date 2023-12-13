@@ -24,4 +24,8 @@ await page.goto('https://coffee-cart.app/?breakable=1', { waitUntil: 'networkidl
 const coffee = await page.$('[data-test="Espresso"]');
 await coffee.click();
 
+const checkout = await page.$('[data-test="checkout"]');
+const total = await checkout.evaluate(el => el.textContent);
+assert.equal(total, 'Total: $10.00');
+
 browser.close();
