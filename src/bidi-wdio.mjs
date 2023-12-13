@@ -5,7 +5,8 @@ import { remote } from "webdriverio";
 // Launch Chrome
 // kill port if it is used: lsof -ti tcp:4441 | xargs kill
 const port = 4444;
-const args = [`--port=${port}`];
+
+const args = [`--port=${port}`, '--allowed-ips'];
 await chromedriver.start(args, true);
 
 // Launch WebDriver BiDi

@@ -1,12 +1,13 @@
 import * as assert from "node:assert";
-import geckodriver from "geckodriver";
+import { start } from "geckodriver";
 import { remote } from "webdriverio";
+import waitPort from "wait-port";
 
 // Launch Firefox
-// kill port if it is used: lsof -ti tcp:4444 | xargs kill
-const port = 4444;
-const args = [`--port=${port}`];
-const firefox = geckodriver.start(args);
+// kill port if it is used: lsof -ti tcp:4441 | xargs kill
+const port = 4441;
+const firefox = await start({port});
+await waitPort({ port });
 
 // Launch WebDriver BiDi
 const browser = await remote({
