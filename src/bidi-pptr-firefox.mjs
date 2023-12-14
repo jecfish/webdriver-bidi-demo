@@ -4,7 +4,8 @@ import puppeteer from 'puppeteer';
 // Arrange: Launch browser with WebDriver BiDi
 const browser = await puppeteer.launch({
   protocol: 'webDriverBiDi',
-     product: 'firefox', // or 'chrome'
+  product: 'firefox', // or 'chrome'
+  headless: false
 });
 const context = await browser.createIncognitoBrowserContext();
 const page = await context.newPage();
